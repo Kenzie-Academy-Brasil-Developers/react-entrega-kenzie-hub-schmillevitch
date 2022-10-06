@@ -8,6 +8,21 @@ export const Navbar = styled.nav`
   max-width: 800px;
   height: 100px;
   padding: 10px;
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 40px;
+    border-radius: 4.06066px;
+    background: #212529;
+    text-decoration: none;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 28px;
+  }
 `;
 
 export const Header = styled.header`
