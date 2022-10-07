@@ -61,6 +61,7 @@ const LoginPage = ({ setUser }) => {
         setLoading(false);
       }, 2000);
     }
+    // eslint-disable-next-line
   }, [loading]);
 
   return (
