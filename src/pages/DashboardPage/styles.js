@@ -7,7 +7,7 @@ export const Navbar = styled.nav`
   margin: 0 auto;
   max-width: 800px;
   height: 100px;
-  padding: 10px;
+  padding: 20px;
 
   a {
     display: flex;
@@ -32,7 +32,7 @@ export const Header = styled.header`
   margin: 0 auto;
   max-width: 100%;
   height: 150px;
-  padding: 10px;
+  padding: 20px;
   border-top: solid 2px #343b41;
   border-bottom: solid 2px #343b41;
 
@@ -41,5 +41,30 @@ export const Header = styled.header`
     justify-content: space-between;
     margin: 0 auto;
     width: 800px;
+  }
+
+  h4 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  p {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    color: #868e96;
+  }
+
+  @media screen and (max-width: 600px) {
+    div {
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+      width: 800px;
+      gap: 16px;
+    }
   }
 `;

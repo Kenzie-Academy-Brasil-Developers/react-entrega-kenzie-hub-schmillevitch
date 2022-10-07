@@ -24,7 +24,7 @@ export const Form = styled.form`
   background-color: #212529;
   margin: 0 auto;
   min-width: 380px;
-  height: 500px;
+  height: 490px;
   gap: 20px;
   border-radius: 8px;
 
@@ -112,6 +112,7 @@ export const Button = styled.button`
   font-weight: 500;
   font-size: 16px;
   line-height: 26px;
+  padding: 5px;
 `;
 
 export const Loading = styled.div`
