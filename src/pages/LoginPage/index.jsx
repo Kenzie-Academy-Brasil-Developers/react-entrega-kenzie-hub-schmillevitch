@@ -1,9 +1,7 @@
-import { useNavigate, Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import api from "../../services/api";
 import {
   Header,
   Container,
@@ -15,12 +13,12 @@ import {
   Loading,
 } from "./styles";
 import logo from "../../Logo.svg";
-import { toast } from "react-toastify";
 import { CircularProgress } from "@mui/material";
+import { UserContext } from "../../contexts/UserContext";
+import { useContext } from "react";
 
-const LoginPage = ({ setUser }) => {
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+const LoginPage = () => {
+  const { loading, loginFunction } = useContext(UserContext);
 
   const formSchema = yup.object().shape({
     email: yup.string().required("*Email obrigatório"),
@@ -35,35 +33,6 @@ const LoginPage = ({ setUser }) => {
     resolver: yupResolver(formSchema),
   });
 
-  const onSubmitFunction = (data) => {
-    console.log(data);
-    api
-      .post("/sessions", data)
-      .then((response) => {
-        console.log(response.data.user);
-        window.localStorage.clear();
-        window.localStorage.setItem("@TOKEN", response.data.token);
-        window.localStorage.setItem("@USERID", response.data.user.id);
-        setUser(response.data.user);
-        setLoading(true);
-        toast.success("Você está logado!");
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error("Ops! Algo deu errado");
-      });
-  };
-
-  useEffect(() => {
-    if (loading) {
-      setTimeout(() => {
-        navigate("/dashboard");
-        setLoading(false);
-      }, 2000);
-    }
-    // eslint-disable-next-line
-  }, [loading]);
-
   return (
     <>
       {loading ? (
@@ -77,7 +46,7 @@ const LoginPage = ({ setUser }) => {
             <img src={logo} alt="lodo da Kenzie" />
           </Header>
           <Container>
-            <Form onSubmit={handleSubmit(onSubmitFunction)}>
+            <Form onSubmit={handleSubmit(loginFunction)}>
               <h2>Login</h2>
               <div>
                 <Label htmlFor="email">Email</Label>

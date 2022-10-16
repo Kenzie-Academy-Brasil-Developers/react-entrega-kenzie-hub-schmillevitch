@@ -1,21 +1,5 @@
 import styled from "styled-components";
 
-export const Header = styled.header`
-  display: flex;
-  justify-content: center;
-  align-items: end;
-  margin: 0 auto;
-  height: 100px;
-  padding: 30px;
-`;
-
-export const Container = styled.main`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
@@ -23,10 +7,10 @@ export const Form = styled.form`
   align-items: center;
   background-color: #212529;
   margin: 0 auto;
-  min-width: 380px;
-  height: 490px;
+  min-width: 350px;
+  height: 300px;
   gap: 20px;
-  border-radius: 8px;
+  border-radius: 0px 0px 4px 4px;
 
   h2 {
     font-style: normal;
@@ -67,26 +51,33 @@ export const Form = styled.form`
 `;
 
 export const Input = styled.input`
-  height: 40px;
+  height: 30px;
   border-radius: 4px;
   background: #343b41;
   border: 1.2182px solid #f8f9fa;
   color: #f8f9fa;
-  padding: 4px;
+  padding: 8px;
   font-style: normal;
   font-weight: 400;
   font-size: 16.2426px;
   line-height: 26px;
 
-  &:-webkit-autofill {
-    box-shadow: #343b41;
+  ::placeholder {
+    color: #868e96;
   }
-  &:-webkit-autofill:hover {
-    box-shadow: #343b41;
-  }
-  &:-webkit-autofill:focus {
-    box-shadow: #343b41;
-  }
+`;
+
+export const Select = styled.select`
+  height: 40px;
+  border-radius: 4px;
+  background: #343b41;
+  border: 1.2182px solid #f8f9fa;
+  color: #f8f9fa;
+  padding: 8px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16.2426px;
+  line-height: 26px;
 `;
 
 export const Label = styled.label`
@@ -103,7 +94,7 @@ export const Span = styled.span`
 
 export const Button = styled.button`
   background: #ff577f;
-  width: 80%;
+  width: 100%;
   height: 40px;
   border: 1.2182px solid #ff577f;
   border-radius: 4.06066px;
@@ -116,10 +107,32 @@ export const Button = styled.button`
   cursor: pointer;
 `;
 
-export const Loading = styled.div`
+export const ModalHeader = styled.div`
+  width: 320px;
+  height: 15px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  margin: 100px auto;
+  background-color: #343b41;
+  border-radius: 4px 4px 0px 0px;
+  padding: 15px;
+
+  h4 {
+    background-color: transparent;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  button {
+    background: transparent;
+    color: #868e96;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 26px;
+    border: none;
+    cursor: pointer;
+  }
 `;

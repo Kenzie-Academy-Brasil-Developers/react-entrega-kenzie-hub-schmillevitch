@@ -1,15 +1,14 @@
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import api from "../../services/api";
 import logo from "../../Logo.svg";
 import { Header, Container, Form, Button } from "./styles";
-import { toast } from "react-toastify";
+import { useContext } from "react";
+import { UserContext } from "../../contexts/UserContext";
 
 const RegisterPage = () => {
-  const navigate = useNavigate();
-
+  const { registerFunction } = useContext(UserContext);
   const formSchema = yup.object().shape({
     name: yup.string().required("*Nome obrigatório"),
     email: yup.string().required("*Email obrigatório"),
@@ -37,21 +36,6 @@ const RegisterPage = () => {
     resolver: yupResolver(formSchema),
   });
 
-  const onSubmitFunction = (data) => {
-    console.log(data);
-    api
-      .post("/users", data)
-      .then((response) => {
-        console.log(response.data);
-        toast.success("Conta criada com sucesso!", { theme: "colored" });
-        navigate("/");
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error("Ops! Algo deu errado");
-      });
-  };
-
   return (
     <>
       <Header>
@@ -59,7 +43,7 @@ const RegisterPage = () => {
         <Link to={"/"}>Voltar</Link>
       </Header>
       <Container>
-        <Form onSubmit={handleSubmit(onSubmitFunction)}>
+        <Form onSubmit={handleSubmit(registerFunction)}>
           <h2>Crie sua conta</h2>
           <span>Rápido e grátis, vamos nessa</span>
           <div>
