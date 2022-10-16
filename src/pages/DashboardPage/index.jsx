@@ -61,7 +61,7 @@ const DashboardPage = () => {
                   <div>
                     <span>{tech.status}</span>
                     <button onClick={() => deleteTech(tech.id)}>
-                      <img src={bin} alt="excluir" />
+                      <img src={bin} alt="excluir tecnologia" />
                     </button>
                   </div>
                 </DivContainer>
