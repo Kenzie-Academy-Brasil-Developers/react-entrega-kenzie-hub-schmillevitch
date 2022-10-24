@@ -4,12 +4,12 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   background-color: #212529;
   margin: 0 auto;
-  min-width: 350px;
+  min-width: 310px;
   height: 300px;
   gap: 20px;
+  padding: 20px;
   border-radius: 0px 0px 4px 4px;
 
   h2 {
@@ -19,14 +19,6 @@ export const Form = styled.form`
     line-height: 28px;
     color: #f8f9fa;
     background-color: #212529;
-  }
-
-  div {
-    display: flex;
-    flex-direction: column;
-    background-color: #212529;
-    width: 80%;
-    gap: 15px;
   }
 
   span {

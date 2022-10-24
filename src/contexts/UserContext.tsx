@@ -2,11 +2,51 @@ import { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import api from "../services/api";
 import { useNavigate } from "react-router-dom";
+import React from "react";
 
-export const UserContext = createContext({});
+interface iUserProviderProps {
+  children: React.ReactNode;
+}
 
-const UserProvider = ({ children }) => {
-  const [user, setUser] = useState({});
+interface iUser {
+  id: string;
+  avatar_url: string;
+  name: string;
+  email: string;
+  password: string;
+  bio: string;
+  contact: string;
+  works: iWorks[];
+  course_module: string;
+  techs: iTechs[];
+}
+
+interface iWorks {}
+
+interface iTechs {
+  id: string;
+  title: string;
+  status: string;
+}
+
+interface iData {
+  email: string;
+  password: string;
+}
+
+interface iUserContext {
+  user: iUser;
+  loading: boolean;
+  isLoggedIn: boolean;
+  loginFunction: (data: iData) => void;
+  registerFunction: (data: iData) => void;
+  verifyToken: () => void;
+}
+
+export const UserContext = createContext<iUserContext>({} as iUserContext);
+
+const UserProvider = ({ children }: iUserProviderProps) => {
+  const [user, setUser] = useState<iUser>({} as iUser);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -52,7 +92,7 @@ const UserProvider = ({ children }) => {
     }
   };
 
-  const loginFunction = (data) => {
+  const loginFunction = (data: iData): void => {
     console.log(data);
     api
       .post("/sessions", data)
@@ -73,7 +113,7 @@ const UserProvider = ({ children }) => {
       });
   };
 
-  const registerFunction = (data) => {
+  const registerFunction = (data: iData): void => {
     console.log(data);
     api
       .post("/users", data)
@@ -92,9 +132,7 @@ const UserProvider = ({ children }) => {
     <UserContext.Provider
       value={{
         user,
-        setUser,
         loading,
-        setLoading,
         loginFunction,
         registerFunction,
         isLoggedIn,

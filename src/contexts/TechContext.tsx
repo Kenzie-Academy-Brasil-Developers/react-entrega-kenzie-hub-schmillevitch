@@ -3,10 +3,34 @@ import { toast } from "react-toastify";
 import api from "../services/api";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "./UserContext";
+import React from "react";
 
-export const TechContext = createContext({});
+interface iTechProviderProps {
+  children: React.ReactNode;
+}
 
-export const TechProvider = ({ children }) => {
+interface iDataTech {
+  id: string;
+  title: string;
+  status: string;
+}
+
+interface iTechId {
+  id: string;
+}
+
+interface iTechContext {
+  addTech: (data: iDataTech) => void;
+  showModalTechs: boolean;
+  loading: boolean;
+  handleModalTrue: () => void;
+  handleModalFalse: () => void;
+  deleteTech: (tech_id: iTechId) => void;
+}
+
+export const TechContext = createContext<iTechContext>({} as iTechContext);
+
+export const TechProvider = ({ children }: iTechProviderProps) => {
   const [loading, setLoading] = useState(false);
   const [showModalTechs, setShowModalTechs] = useState(false);
   const { verifyToken } = useContext(UserContext);
@@ -22,7 +46,7 @@ export const TechProvider = ({ children }) => {
     // eslint-disable-next-line
   }, [loading]);
 
-  const addTech = (data) => {
+  const addTech = (data: iDataTech) => {
     console.log(data);
     api
       .post(
@@ -57,7 +81,7 @@ export const TechProvider = ({ children }) => {
     setShowModalTechs(false);
   }
 
-  const deleteTech = (tech_id) => {
+  const deleteTech = (tech_id: iTechId) => {
     console.log(tech_id);
     api
       .delete(`/users/techs/${tech_id}`, {
@@ -84,12 +108,10 @@ export const TechProvider = ({ children }) => {
     <TechContext.Provider
       value={{
         showModalTechs,
-        setShowModalTechs,
         addTech,
         loading,
-        setLoading,
-        handleModalFalse,
         handleModalTrue,
+        handleModalFalse,
         deleteTech,
       }}
     >

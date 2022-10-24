@@ -7,10 +7,10 @@ import {
   Form,
   Input,
   Label,
-  Span,
   ModalHeader,
   Select,
   Button,
+  Span,
 } from "./styles";
 import { TechContext } from "../../contexts/TechContext";
 import { useContext } from "react";
@@ -25,6 +25,12 @@ const style = {
   bgcolor: "transparent",
 };
 
+interface iDataTech {
+  id: string;
+  title: string;
+  status: string;
+}
+
 const AddModal = () => {
   const { handleModalFalse, addTech } = useContext(TechContext);
 
@@ -37,7 +43,7 @@ const AddModal = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<iDataTech>({
     resolver: yupResolver(formSchema),
   });
 
@@ -50,7 +56,7 @@ const AddModal = () => {
         </ModalHeader>
 
         <Form onSubmit={handleSubmit(addTech)}>
-          <div>
+          <>
             <Label htmlFor="title">Nome</Label>
             <Input
               id="title"
@@ -67,9 +73,9 @@ const AddModal = () => {
               <option defaultValue="Intermediário">Intermediário</option>
               <option defaultValue="Avançado">Avançado</option>
             </Select>
-            <span>{errors.status?.message}</span>
+            <Span>{errors.status?.message}</Span>
             <Button type="submit">Cadastrar tecnologia</Button>
-          </div>
+          </>
         </Form>
       </Box>
     </div>
