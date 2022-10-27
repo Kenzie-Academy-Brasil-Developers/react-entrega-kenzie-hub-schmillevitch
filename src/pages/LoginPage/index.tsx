@@ -15,7 +15,12 @@ import {
 import logo from "../../Logo.svg";
 import { CircularProgress } from "@mui/material";
 import { UserContext } from "../../contexts/UserContext";
-import { useContext } from "react";
+import React, { useContext } from "react";
+
+interface iLogin {
+  email: string;
+  password: string;
+}
 
 const LoginPage = () => {
   const { loading, loginFunction } = useContext(UserContext);
@@ -29,7 +34,7 @@ const LoginPage = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<iLogin>({
     resolver: yupResolver(formSchema),
   });
 

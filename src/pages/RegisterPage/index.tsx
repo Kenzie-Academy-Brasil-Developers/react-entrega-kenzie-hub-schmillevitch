@@ -6,6 +6,18 @@ import logo from "../../Logo.svg";
 import { Header, Container, Form, Button } from "./styles";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
+import React from "react";
+
+interface iRegister {
+  email: string;
+  password: string;
+  name: string;
+  confirmPassword: string;
+  bio: string;
+  contact: string;
+  course_module: string;
+  select: string;
+}
 
 const RegisterPage = () => {
   const { registerFunction } = useContext(UserContext);
@@ -32,7 +44,7 @@ const RegisterPage = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<iRegister>({
     resolver: yupResolver(formSchema),
   });
 
@@ -44,9 +56,10 @@ const RegisterPage = () => {
       </Header>
       <Container>
         <Form onSubmit={handleSubmit(registerFunction)}>
-          <h2>Crie sua conta</h2>
-          <span>Rápido e grátis, vamos nessa</span>
-          <div>
+          <>
+            <h2>Crie sua conta</h2>
+            <span>Rápido e grátis, vamos nessa</span>
+
             <label htmlFor="name">Nome</label>
             <input
               id="name"
@@ -54,7 +67,7 @@ const RegisterPage = () => {
               type="text"
               {...register("name")}
             />
-            <span>{errors.name?.message}</span>
+            {errors.name?.message}
             <label htmlFor="email">Email</label>
             <input
               id="email"
@@ -62,7 +75,7 @@ const RegisterPage = () => {
               type="email"
               {...register("email")}
             />
-            <span>{errors.email?.message}</span>
+            {errors.email?.message}
             <label htmlFor="email">Senha</label>
             <input
               id="password"
@@ -70,7 +83,7 @@ const RegisterPage = () => {
               type="password"
               {...register("password")}
             />
-            <span>{errors.password?.message}</span>
+            {errors.password?.message}
             <label htmlFor="confirm-password">Confirmar senha</label>
             <input
               id="confirm-password"
@@ -78,7 +91,7 @@ const RegisterPage = () => {
               type="password"
               {...register("confirmPassword")}
             />
-            <span>{errors.confirmPassword?.message}</span>
+            {errors.confirmPassword?.message}
             <label htmlFor="bio">Bio</label>
             <input
               id="bio"
@@ -86,7 +99,7 @@ const RegisterPage = () => {
               type="text"
               {...register("bio")}
             />
-            <span>{errors.bio?.message}</span>
+            {errors.bio?.message}
             <label htmlFor="contact">Contato</label>
             <input
               id="contact"
@@ -94,7 +107,7 @@ const RegisterPage = () => {
               type="text"
               {...register("contact")}
             />
-            <span>{errors.contact?.message}</span>
+            {errors.contact?.message}
             <label htmlFor="select">Selecionar módulo</label>
             <select id="course_module" {...register("course_module")}>
               <option defaultValue="">Selecione:</option>
@@ -111,9 +124,10 @@ const RegisterPage = () => {
                 Quarto módulo (Backend Avançado)
               </option>
             </select>
-            <span>{errors.select?.message}</span>
-          </div>
-          <Button type="submit">Cadastrar</Button>
+            {errors.select?.message}
+
+            <Button type="submit">Cadastrar</Button>
+          </>
         </Form>
       </Container>
     </>

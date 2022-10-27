@@ -9,11 +9,12 @@ import {
 } from "./styles";
 import logo from "../../Logo.svg";
 import add from "../../Add.svg";
-import bin from "../../Bin.png";
+import bin from "../../Bin.svg";
 import { useContext, useEffect } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import { TechContext } from "../../contexts/TechContext";
 import AddModal from "../../components/AddModal";
+import React from "react";
 
 const DashboardPage = () => {
   const { user, verifyToken } = useContext(UserContext);

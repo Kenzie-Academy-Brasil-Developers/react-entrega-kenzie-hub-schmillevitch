@@ -60,15 +60,6 @@ export const Form = styled.form`
     gap: 15px;
   }
 
-  span {
-    background-color: #212529;
-    color: #868e96;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 22px;
-  }
-
   input {
     height: 40px;
     border-radius: 4px;
@@ -101,11 +92,15 @@ export const Form = styled.form`
     font-size: 16.2426px;
     line-height: 26px;
   }
+`;
 
-  span {
-    background: #212529;
-    font-size: 12px;
-  }
+export const Span = styled.span`
+  background-color: #212529;
+  color: #868e96;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 22px;
 `;
 
 export const Button = styled.button`

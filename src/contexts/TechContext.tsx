@@ -15,17 +15,13 @@ interface iDataTech {
   status: string;
 }
 
-interface iTechId {
-  id: string;
-}
-
 interface iTechContext {
   addTech: (data: iDataTech) => void;
   showModalTechs: boolean;
   loading: boolean;
   handleModalTrue: () => void;
   handleModalFalse: () => void;
-  deleteTech: (tech_id: iTechId) => void;
+  deleteTech: (tech_id: string) => void;
 }
 
 export const TechContext = createContext<iTechContext>({} as iTechContext);
@@ -81,7 +77,7 @@ export const TechProvider = ({ children }: iTechProviderProps) => {
     setShowModalTechs(false);
   }
 
-  const deleteTech = (tech_id: iTechId) => {
+  const deleteTech = (tech_id: string) => {
     console.log(tech_id);
     api
       .delete(`/users/techs/${tech_id}`, {
